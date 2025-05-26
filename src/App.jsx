@@ -1,8 +1,8 @@
 import Home from "./pages/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div>
-      Coming Soon
       <Home />
     </div>
   );
