@@ -1,74 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import MovieCard from "../components/MovieCard";
+import {
+  getPopularMovies,
+  getTrendingMovies,
+  getNowPlayingMovies,
+} from "../api/api";
 
 function Home() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [recentMovies, setRecentMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulate API fetch
-    const fetchMovies = () => {
-      //TODO I will use  Harriet movie card
-      const mockMovies = [
-        {
-          id: 1,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/04/solo-leveling-jinwoo-rematch-with-the-statue-of-god.JPG",
-        },
-        {
-          id: 2,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/05/sung-jinwoo-in-front-of-the-monarchs-of-solo-leveling.jpg",
-        },
-        {
-          id: 3,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/05/solo-leveling-jinwoo-featured.jpg",
-        },
-        {
-          id: 4,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/04/jinwoo-shadow-army-featured-image.png",
-        },
-        {
-          id: 5,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/05/sung-jinwoo-in-front-of-the-monarchs-of-solo-leveling.jpg",
-        },
-        {
-          id: 6,
-          title: "Solo Levelling",
-          year: 2016,
-          genre: "Series",
-          poster:
-            "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/05/sung-jinwoo-in-front-of-the-monarchs-of-solo-leveling.jpg",
-        },
-      ];
+    const fetchMovies = async () => {
+      try {
+        setLoading(true);
 
-      setFeaturedMovies(mockMovies.slice(0, 3));
-      setTrendingMovies(mockMovies.slice(0, 6));
-      setRecentMovies(mockMovies.slice(3, 6));
+        // We will fetch all movies required
+        const [popular, trending, nowPlaying] = await Promise.all([
+          getPopularMovies(),
+          getTrendingMovies(),
+          getNowPlayingMovies(),
+        ]);
+        console.log("Movie API responses:", { popular, trending, nowPlaying });
+
+        setFeaturedMovies(popular.slice(0, 8));
+        setTrendingMovies(trending);
+        setRecentMovies(nowPlaying);
+      } catch (err) {
+        setError(err.message);
+        console.error("Failed to fetch movies:", err);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchMovies();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="home-page">
@@ -79,13 +53,13 @@ function Home() {
             <div
               className="hero-slide"
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${movie.poster})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
               }}
             >
               <div className="hero-content">
                 <h1>{movie.title}</h1>
                 <p>
-                  {movie.year} • {movie.genre}
+                  {movie.release_date?.split("-")[0]} • {movie.vote_average} ⭐
                 </p>
                 <div className="hero-buttons">
                   <button className="btn btn-danger me-2">Play Now</button>
@@ -102,7 +76,7 @@ function Home() {
         <section className="mb-5">
           <h2 className="section-title">Trending Now</h2>
           <Row xs={1} sm={2} md={3} lg={4} xl={5} className="g-4">
-            {trendingMovies.map((movie) => (
+            {trendingMovies?.map((movie) => (
               <Col key={movie.id}>
                 <MovieCard movie={movie} />
               </Col>
@@ -112,9 +86,9 @@ function Home() {
 
         {/* Recently Added Section */}
         <section className="mb-5">
-          <h2 className="section-title">Recently Added</h2>
+          <h2 className="section-title">Now Playing</h2>
           <Row xs={1} sm={2} md={3} lg={4} xl={5} className="g-4">
-            {recentMovies.map((movie) => (
+            {recentMovies?.map((movie) => (
               <Col key={movie.id}>
                 <MovieCard movie={movie} />
               </Col>
