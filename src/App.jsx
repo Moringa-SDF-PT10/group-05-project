@@ -23,22 +23,6 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const storedProfile = localStorage.getItem("userData");
-    console.log(storedProfile + " storedProfile");
-
-    try {
-      if (storedProfile) {
-        const parsedProfile = JSON.parse(storedProfile);
-        if (parsedProfile.email && parsedProfile.password) {
-          setIsAuthenticated(true);
-        }
-      }
-    } catch (error) {
-      console.error("Error parsing user data:", error);
-      setIsAuthenticated(false);
-    }
-  }, []);
   return (
     <Router>
       <div className="app-container">
