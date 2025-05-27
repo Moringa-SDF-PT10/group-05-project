@@ -1,0 +1,167 @@
+body {
+  color: var(--light-text);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.hulu_green {
+  color: #1ce783;
+}
+.netflix_red {
+  color: #e50914;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+/* Navbar Styles */
+.custom-navbar {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  padding: 15px 0;
+}
+
+.brand-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.netflix-red {
+  color: var(--netflix-red);
+}
+
+.hulu-green {
+  color: var(--hulu-green);
+}
+
+.nav-link {
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.auth-button {
+  border-color: var(--netflix-red);
+  color: var(--netflix-red);
+}
+
+.auth-button:hover {
+  background-color: var(--netflix-red);
+  color: white;
+}
+
+/* Hero Carousel */
+.hero-carousel {
+  height: 70vh;
+  overflow: hidden;
+}
+
+.hero-slide {
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons .btn {
+  padding: 10px 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+/* Movie Card */
+.movie-card {
+  background-color: #222;
+  border: none;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card .card-img-top {
+  border-bottom: 1px solid #333;
+}
+
+.movie-card .card-body {
+  padding: 1.25rem;
+}
+
+.movie-card .btn {
+  font-weight: bold;
+}
+
+/* Section Titles */
+.section-title {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--netflix-red);
+  display: inline-block;
+}
+
+/* Footer */
+footer a {
+  color: var(--hulu-green);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.social-links {
+  font-size: 1.5rem;
+}
+
+/* Auth Page */
+.auth-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.auth-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+/* Trivia Page */
+.option-item {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.option-item:hover {
+  background-color: #f8f9fa;
+  color: var(--dark-text);
+}
