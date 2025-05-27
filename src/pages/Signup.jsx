@@ -18,37 +18,46 @@ const Signup = () => {
     if (success) {
       navigate("/dashboard");
     } else {
-      setError("SignUp Failed. Please retry.");
+      setError("Sign up failed. Please try again.");
     }
   };
 
   return (
-    <div className="signup-page">
-      <h2>Sign Up</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
+        <h2 className="text-center mb-4">Sign Up for CinemaHub</h2>
+        {error && <div className="alert alert-danger">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-success w-100">Sign Up</button>
+        </form>
+        <p className="mt-3 text-center">
+          Already have an account? <a href="/login">Log in</a>
+        </p>
+      </div>
     </div>
   );
 };
