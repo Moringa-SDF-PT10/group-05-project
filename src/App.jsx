@@ -17,9 +17,10 @@ import DiscoverDirector from "./pages/DiscoverByDirector";
 import DiscoverDecade from "./pages/DiscoverByDecade";
 import "./styles/App.css";
 import Signup from "./pages/Signup";
-import ErrorPage from "./pages/errorPage";
+import ErrorPage from "./pages/ErrorPage";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Favorites from "./pages/Favorites";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -37,6 +38,14 @@ function App() {
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
                   <Watchlist />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/Favorites"
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <Favorites />
                 </ProtectedRoute>
               }
             />
