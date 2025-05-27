@@ -1,7 +1,59 @@
+// components/Navbar.js
 import React from "react";
+import { Link } from "react-router-dom";
+import { Container, Nav, Navbar, Form, Button } from "react-bootstrap";
 
 function Navigation() {
-  return <div>Navigation</div>;
+  return (
+    <div>
+      <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
+        <Container fluid>
+          <Navbar.Brand as={Link} to="/" className="brand-logo">
+            <span className="netflix_red">Cinema</span>
+            <span className="hulu_green">Hub</span>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav className="me-auto my-2 my-lg-0" navbarScroll>
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+              <Nav.Link as={Link} to="/discover/director">
+                Discover by Director
+              </Nav.Link>
+              <Nav.Link as={Link} to="/discover/decade">
+                Discover by Decade
+              </Nav.Link>
+              <Nav.Link as={Link} to="/trivia">
+                Trivia
+              </Nav.Link>
+              <Nav.Link as={Link} to="/watchlist">
+                Watchlist
+              </Nav.Link>
+            </Nav>
+            <div className="d-flex">
+              <Button
+                variant="success"
+                as={Link}
+                to="/login"
+                className="me-2 auth-button"
+              >
+                Login
+              </Button>
+              <Button
+                variant="danger"
+                as={Link}
+                to="/signup"
+                className="auth-button"
+              >
+                Sign Up
+              </Button>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  );
 }
 
 export default Navigation;
