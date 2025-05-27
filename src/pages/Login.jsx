@@ -18,7 +18,7 @@ const Login = () => {
     if (success) {
       navigate("/dashboard");
     } else {
-      setError("Invalid credentials. Please try again.");
+      setError("Invalid login credentials. Please try again.");
     }
   };
 
