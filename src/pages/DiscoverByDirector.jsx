@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { searchDirector, searchPerson } from "../api/api";
+import React, { useState } from "react";
+import { searchDirector, getPersonCredits } from "../api/api";
+import MovieCard from "../components/MovieCard";
 
 function DiscoverByDirector() {
   const [director, setDirector] = useState("");
@@ -20,13 +20,11 @@ function DiscoverByDirector() {
         return;
       }
 
-      //   const creditsRes = await fetch(
-      //     `https://api.themoviedb.org/3/person/${person.id}/movie_credits?api_key=tmdb_api_key`
-      //   );
-      const credits = await searchPerson(person.id);
+      const credits = await getPersonCredits(person.id);
       const directedMovies = credits.crew.filter((m) => m.job === "Director");
       setMovies(directedMovies);
     } catch (err) {
+      console.error(err);
       setError("Failed to fetch movies.");
     }
     setLoading(false);
