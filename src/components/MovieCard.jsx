@@ -1,10 +1,19 @@
 import React from "react";
 import "../styles/MovieCard.css";
+import { useMovieContext } from "../context/MovieContexts";
 
 // MovieCard component displays individual movie details.
 // Expects a `movie` prop with structure: { title, poster_path, release_date, vote_average, overview }
 
 function MovieCard({ movie }) {
+
+  const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
+  const favorite = isFavorite (movie.id)
+  function handleFavoriteClick (e) {
+    e.preventDefault()
+    if (favorite) removeFromFavorites(movie.id)
+      else addToFavorites(movie)
+  }
   return (
     <div className="movie-card">
       <div className="movie-poster">
@@ -13,7 +22,12 @@ function MovieCard({ movie }) {
           alt={movie.title}
         />
         <div className="movie-overlay">
-          <button className="favorite-btn">♥</button>
+          <button 
+          className= {`favorite-btn ${favorite ? "active" : ""}`}
+           onClick={handleFavoriteClick}
+           >
+            ♥
+            </button>
         </div>
       </div>
       <div className="movie-info">

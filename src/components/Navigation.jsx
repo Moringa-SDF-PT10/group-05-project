@@ -30,6 +30,9 @@ function Navigation() {
               <Nav.Link as={Link} to="/watchlist">
                 Watchlist
               </Nav.Link>
+              <Nav.Link as={Link} to="/favorites">
+                Favorites
+              </Nav.Link>
             </Nav>
             <div className="d-flex">
               <Button
