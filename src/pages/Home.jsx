@@ -6,6 +6,7 @@ import {
   getTrendingMovies,
   getNowPlayingMovies,
 } from "../api/api";
+import { useMovieContext } from "../context/MovieContexts";
 
 function Home() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
@@ -13,6 +14,7 @@ function Home() {
   const [recentMovies, setRecentMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {addToWatchlist, isInWatchlist} = useMovieContext()
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -63,7 +65,11 @@ function Home() {
                 </p>
                 <div className="hero-buttons">
                   <button className="btn btn-danger me-2">Play Now</button>
-                  <button className="btn btn-outline-light">+ Watchlist</button>
+                  <button className= {`btn ${isInWatchlist(movie.id) ? "btn-success": "btn-outline-light"}`}
+                  onClick={ () => addToWatchlist(movie)}
+                  disabled={isInWatchlist(movie.id)}>
+                  {isInWatchlist(movie.id) ? "In Watchlist" : "+ Watchlist"}
+                  </button>
                 </div>
               </div>
             </div>

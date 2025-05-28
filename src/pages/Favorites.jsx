@@ -30,7 +30,6 @@ const Favorites = () => {
         <p>
          Your favorite movie list is empty. <Link to="/">Browse movies</Link> to add.
         </p>
-        {/* <p>Your favorite movie list is empty. Start adding movies to your favorite list to view.</p> */}
     </div>
   )
 }

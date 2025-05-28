@@ -20,7 +20,7 @@ import Signup from "./pages/Signup";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Favorites from "./pages/Favorites";
-import ErrorPage from "./pages/errorPage";
+import ErrorPage from "./pages/ErrorPage";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
