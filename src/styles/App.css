@@ -2,6 +2,12 @@ body {
   color: var(--light-text);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.custom-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  width: 100%;
+}
 .hulu_green {
   color: #1ce783;
 }
