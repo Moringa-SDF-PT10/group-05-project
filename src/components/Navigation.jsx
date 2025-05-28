@@ -18,10 +18,10 @@ function Navigation() {
               <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/discover/director">
+              <Nav.Link as={Link} to="/discoverByDirector">
                 Discover by Director
               </Nav.Link>
-              <Nav.Link as={Link} to="/discover/decade">
+              <Nav.Link as={Link} to="/discoverByDecade">
                 Discover by Decade
               </Nav.Link>
               <Nav.Link as={Link} to="/trivia">
@@ -35,22 +35,49 @@ function Navigation() {
               </Nav.Link>
             </Nav>
             <div className="d-flex">
-              <Button
-                variant="success"
-                as={Link}
-                to="/login"
-                className="me-2 auth-button"
-              >
-                Login
-              </Button>
-              <Button
-                variant="danger"
-                as={Link}
-                to="/signup"
-                className="auth-button"
-              >
-                Sign Up
-              </Button>
+              {localStorage.getItem("cinemahubUser") ? (
+                <>
+                  <Button
+                    style={{ MarginRight: "20px" }}
+                    variant="light"
+                    onClick={() => {
+                      window.location.href = "/Dashboard";
+                    }}
+                    className="auth-button"
+                  >
+                    DashBoard
+                  </Button>
+                  <Button
+                    variant="warning"
+                    onClick={() => {
+                      localStorage.removeItem("cinemahubUser");
+                      window.location.href = "/";
+                    }}
+                    className="auth-button"
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    variant="success"
+                    as={Link}
+                    to="/login"
+                    className="me-2 auth-button"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="danger"
+                    as={Link}
+                    to="/signup"
+                    className="auth-button"
+                  >
+                    Sign Up
+                  </Button>
+                </>
+              )}
             </div>
           </Navbar.Collapse>
         </Container>

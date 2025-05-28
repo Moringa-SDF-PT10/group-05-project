@@ -22,10 +22,10 @@ function Footer() {
                   <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="/discover/director">Discover by Director</a>
+                  <a href="/discoverByDirector">Discover by Director</a>
                 </li>
                 <li>
-                  <a href="/discover/decade">Discover by Decade</a>
+                  <a href="/discoverByDecade">Discover by Decade</a>
                 </li>
               </ul>
             </Col>
