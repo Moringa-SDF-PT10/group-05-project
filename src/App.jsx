@@ -17,7 +17,7 @@ import DiscoverDirector from "./pages/DiscoverByDirector";
 import DiscoverDecade from "./pages/DiscoverByDecade";
 import "./styles/App.css";
 import Signup from "./pages/Signup";
-import ErrorPage from "./pages/errorPage";
+import ErrorPage from "./pages/ErrorPage";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./routes/ProtectedRoute";
 function App() {
