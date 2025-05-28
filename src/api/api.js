@@ -41,3 +41,34 @@ export const getNowPlayingMovies = async () => {
   const data = await response.json();
   return data.results || [];
 };
+
+export const fetchMoviesByDecade = async (startYear) => {
+  const endYear = startYear + 9;
+  const response = await fetch(
+    `${BASE_URL}/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&primary_release_date.gte=${startYear}-01-01&primary_release_date.lte=${endYear}-12-31`
+  );
+  const data = await response.json();
+  //   console.log(data.results + "fetchMoviesByDecade");
+
+  return data.results || [];
+};
+export const searchDirector = async (name) => {
+  const response = await fetch(
+    `${BASE_URL}/search/person?api_key=${API_KEY}&query=${encodeURIComponent(
+      name
+    )}`
+  );
+  const data = await response.json();
+  console.log(data.results);
+
+  return data.results[0] || [];
+};
+
+export const searchPerson = async (personId) => {
+  const response = await fetch(
+    `${BASE_URL}/person/${personId}/movie_credits?api_key=${API_KEY}`
+  );
+  const data = await response.json();
+  return data.results[0] || [];
+};
+//        `https://api.themoviedb.org/3/person/${person.id}/movie_credits?api_key=${API_KEY}`
