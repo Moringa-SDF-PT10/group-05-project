@@ -57,8 +57,8 @@ function Home() {
               }}
             >
               <div className="hero-content">
-                <h1>{movie.title}</h1>
-                <p>
+                <h1 style={{ color: "white" }}>{movie.title}</h1>
+                <p style={{ color: "white" }}>
                   {movie.release_date?.split("-")[0]} • {movie.vote_average} ⭐
                 </p>
                 <div className="hero-buttons">

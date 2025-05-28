@@ -2,12 +2,13 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ isAuthenticated, children }) => {
-  console.log(isAuthenticated + " isAuthenticated"); //this is failing i dont know why
-
-  const storedProfile = localStorage.getItem("userData");
+const ProtectedRoute = ({ children }) => {
+  const storedProfile = localStorage.getItem("cinemahubUser");
   console.log(storedProfile + " storedProfile");
-
+  if (!storedProfile) {
+    console.log("No user profile found");
+    return <Navigate to="/login" />;
+  }
   try {
     if (storedProfile) {
       const parsedProfile = JSON.parse(storedProfile);
