@@ -6,7 +6,12 @@ import { Container, Nav, Navbar, Form, Button } from "react-bootstrap";
 function Navigation() {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
+      <Navbar
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        className="custom-navbar sticky-top"
+      >
         <Container fluid>
           <Navbar.Brand as={Link} to="/" className="brand-logo">
             <span className="netflix_red">Cinema</span>
