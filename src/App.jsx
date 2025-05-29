@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Favorites from "./pages/Favorites";
 import Dashboard from "./pages/Dashboard";
-import ErrorPage from "./pages/errorPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
