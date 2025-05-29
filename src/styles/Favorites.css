@@ -36,7 +36,7 @@
 }
 
 
-/* Animation for new favorites being added */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -71,12 +71,12 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
-  background-color: #1a1a1a;
+  background-color: #877f7f;
   border-radius: 8px;
 }
 
 .movies-grid > * {
-  flex: 0 1 200px; /* For Flexbox */
+  flex: 0 1 200px; 
   max-width: 200px;
 }
 

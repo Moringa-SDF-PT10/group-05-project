@@ -1,0 +1,52 @@
+.watchlist-container {
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.watchlist-container h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  background-color: #877f7f;
+  border-radius: 8px;
+}
+
+.movie-grid > * {
+  max-width: 200px;
+  justify-self: left;
+}
+
+.clear-btn {
+  padding: 0.6rem 1.2rem;
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.clear-btn:hover {
+  background: darkred;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

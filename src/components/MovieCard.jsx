@@ -5,7 +5,7 @@ import { useMovieContext } from "../context/MovieContexts";
 // MovieCard component displays individual movie details.
 // Expects a `movie` prop with structure: { title, poster_path, release_date, vote_average, overview }
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, showRemove = false, onRemove }) {
 
   const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
   const favorite = isFavorite (movie.id)
@@ -22,12 +22,21 @@ function MovieCard({ movie }) {
           alt={movie.title}
         />
         <div className="movie-overlay">
+        { showRemove ? (
+          <button 
+          className="remove-btn" 
+          onClick={() => onRemove(movie.id)}
+          >
+              Remove
+            </button>
+        ) : (
           <button 
           className= {`favorite-btn ${favorite ? "active" : ""}`}
            onClick={handleFavoriteClick}
            >
             ♥
             </button>
+          )}
         </div>
       </div>
       <div className="movie-info">

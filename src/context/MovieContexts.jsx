@@ -6,37 +6,46 @@ export const useMovieContext = () => useContext (MovieContext)
 
 export const MovieProvider = ({children}) => {
 
-const [favorites, setFavorites] = useState (() => {
-  const stored = localStorage.getItem("favorites")
+    const getStored = (key) => {
+   const stored = localStorage.getItem(key)
   return stored ? JSON.parse(stored) : []
-})
+    }
 
-
-useEffect ( () => {
-    const storedFavs = localStorage.getItem("favorites")
-
-    if (storedFavs) setFavorites(JSON.parse(storedFavs))
-}, [])
+const [favorites, setFavorites] = useState (() => getStored("favorites"))
+const [watchlist,setWatchlist] = useState (() => getStored("watchlist"))
 
 useEffect (() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
 }, [favorites])
 
+useEffect(() => {
+    localStorage.setItem("watchlist" , JSON.stringify(watchlist))
+}, [watchlist])
+
+// Favorites Logic
 const addToFavorites = (movie) => {
-    setFavorites(prev => [...prev,movie])
-}
+    setFavorites(prev => [...prev,movie])}
 
 const removeFromFavorites = (movieId) => {
-    setFavorites(prev => prev.filter(movie=>movie.id !== movieId))
-}
-
+    setFavorites(prev => prev.filter(movie=>movie.id !== movieId))}
+ 
 const isFavorite = (movieId) => {
-    return favorites.some(movie => movie.id === movieId)
-}
+    return favorites.some(movie => movie.id === movieId)}
 
-const clearFavorites = () => {
-    setFavorites([])
-}
+const clearFavorites = () => {   setFavorites([])}
+
+// Watchlist Logic
+
+  const addToWatchlist = (movie) => 
+    setWatchlist((prev) => [...prev, movie])
+
+  const removeFromWatchlist = (movieId) =>
+    setWatchlist((prev) => prev.filter((movie) => movie.id !== movieId))
+
+  const isInWatchlist = (movieId) =>
+    watchlist.some((movie) => movie.id === movieId)
+
+  const clearWatchlist = () => setWatchlist([]);
 
 const value = {
     favorites,
@@ -44,6 +53,12 @@ const value = {
     removeFromFavorites,
     isFavorite,
     clearFavorites,
+
+    watchlist,
+    addToWatchlist,
+    removeFromWatchlist,
+    isInWatchlist,
+    clearWatchlist
 
 }
 
