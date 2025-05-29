@@ -1,9 +1,13 @@
-// components/Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Nav, Navbar, Form, Button } from "react-bootstrap";
-
+import { FiSearch } from "react-icons/fi";
+import SearchModal from "./SearchModal";
+import { useState } from "react";
+import { searchMovies } from "../api/api";
 function Navigation() {
+  const [showSearch, setShowSearch] = useState(false);
+
   return (
     <div>
       <Navbar
@@ -62,6 +66,19 @@ function Navigation() {
                   >
                     Logout
                   </Button>
+                  <Button
+                    variant="outline-info"
+                    className="ms-2 search-button"
+                    onClick={() => setShowSearch(true)}
+                  >
+                    <FiSearch size={20} />
+                  </Button>
+
+                  <SearchModal
+                    show={showSearch}
+                    handleClose={() => setShowSearch(false)}
+                    searchMovies={searchMovies}
+                  />
                 </>
               ) : (
                 <>
@@ -81,6 +98,19 @@ function Navigation() {
                   >
                     Sign Up
                   </Button>
+                  <Button
+                    variant="outline-info"
+                    className="ms-2 search-button"
+                    onClick={() => setShowSearch(true)}
+                  >
+                    <FiSearch size={20} />
+                  </Button>
+
+                  <SearchModal
+                    show={showSearch}
+                    handleClose={() => setShowSearch(false)}
+                    searchMovies={searchMovies}
+                  />
                 </>
               )}
             </div>
