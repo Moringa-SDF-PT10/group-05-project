@@ -1,53 +1,64 @@
-import { createContext,useEffect,useState, useContext } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 
-const MovieContext = createContext()
+const MovieContext = createContext();
 
-export const useMovieContext = () => useContext (MovieContext)
+export const useMovieContext = () => useContext(MovieContext);
 
-export const MovieProvider = ({children}) => {
+export const MovieProvider = ({ children }) => {
+  const getStored = (key) => {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : [];
+  };
 
-    const getStored = (key) => {
-   const stored = localStorage.getItem(key)
-  return stored ? JSON.parse(stored) : []
-    }
+  const [favorites, setFavorites] = useState(() => getStored("favorites"));
+  const [watchlist, setWatchlist] = useState(() => getStored("watchlist"));
 
-const [favorites, setFavorites] = useState (() => getStored("favorites"))
-const [watchlist,setWatchlist] = useState (() => getStored("watchlist"))
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
-useEffect (() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites))
-}, [favorites])
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }, [watchlist]);
 
-useEffect(() => {
-    localStorage.setItem("watchlist" , JSON.stringify(watchlist))
-}, [watchlist])
+  // Favorites Logic
+  const addToFavorites = (movie) => {
+    setFavorites((prev) => [...prev, movie]);
+  };
 
-// Favorites Logic
-const addToFavorites = (movie) => {
-    setFavorites(prev => [...prev,movie])}
+  const removeFromFavorites = (movieId) => {
+    setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+  };
 
-const removeFromFavorites = (movieId) => {
-    setFavorites(prev => prev.filter(movie=>movie.id !== movieId))}
- 
-const isFavorite = (movieId) => {
-    return favorites.some(movie => movie.id === movieId)}
+  const isFavorite = (movieId) => {
+    return favorites.some((movie) => movie.id === movieId);
+  };
 
-const clearFavorites = () => {   setFavorites([])}
+  const clearFavorites = () => {
+    setFavorites([]);
+  };
 
-// Watchlist Logic
-
-  const addToWatchlist = (movie) => 
-    setWatchlist((prev) => [...prev, movie])
+  // Watchlist Logic
+  const addToWatchlist = (movie) =>
+    setWatchlist((prev) => [...prev, movie]);
 
   const removeFromWatchlist = (movieId) =>
-    setWatchlist((prev) => prev.filter((movie) => movie.id !== movieId))
+    setWatchlist((prev) => prev.filter((movie) => movie.id !== movieId));
 
   const isInWatchlist = (movieId) =>
-    watchlist.some((movie) => movie.id === movieId)
+    watchlist.some((movie) => movie.id === movieId);
 
   const clearWatchlist = () => setWatchlist([]);
 
-const value = {
+  const updateWatchlistMovie = (movieId, updatedFields) => {
+    setWatchlist((prev) =>
+      prev.map((movie) =>
+        movie.id === movieId ? { ...movie, ...updatedFields } : movie
+      )
+    );
+  };
+
+  const value = {
     favorites,
     addToFavorites,
     removeFromFavorites,
@@ -58,13 +69,14 @@ const value = {
     addToWatchlist,
     removeFromWatchlist,
     isInWatchlist,
-    clearWatchlist
+    clearWatchlist,
 
-}
+    updateWatchlistMovie, 
+  };
 
-return (
-<MovieContext.Provider value={value}>
-    {children}
-</MovieContext.Provider>
-)
-}
+  return (
+    <MovieContext.Provider value={value}>
+      {children}
+    </MovieContext.Provider>
+  );
+};
