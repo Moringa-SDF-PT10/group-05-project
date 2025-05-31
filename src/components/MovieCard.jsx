@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/MovieCard.css";
 import { useMovieContext } from "../context/MovieContexts";
-
+import { Button } from "react-bootstrap";
 function MovieCard({ movie, showRemove = false, onRemove }) {
   const {
     isFavorite,
@@ -35,9 +35,12 @@ function MovieCard({ movie, showRemove = false, onRemove }) {
         />
         <div className="movie-overlay">
           {showRemove ? (
-            <button className="remove-btn" onClick={() => onRemove(movie.id)}>
+            <Button
+              variant="outline-warning"
+              onClick={() => onRemove(movie.id)}
+            >
               Remove
-            </button>
+            </Button>
           ) : (
             <button
               className={`favorite-btn ${favorite ? "active" : ""}`}

@@ -1,15 +1,12 @@
-import React from 'react';
-import { useMovieContext } from '../context/MovieContexts';
-import { Link } from 'react-router-dom';
-import MovieCard from '../components/MovieCard';
-import '../styles/Watchlist.css'; 
+import React from "react";
+import { useMovieContext } from "../context/MovieContexts";
+import { Link } from "react-router-dom";
+import MovieCard from "../components/MovieCard";
+import "../styles/Watchlist.css";
+import Button from "react-bootstrap/Button";
 
 const Watchlist = () => {
-  const {
-    watchlist,
-    removeFromWatchlist,
-    clearWatchlist
-  } = useMovieContext();
+  const { watchlist, removeFromWatchlist, clearWatchlist } = useMovieContext();
 
   return (
     <div className="watchlist-container">
@@ -22,7 +19,7 @@ const Watchlist = () => {
       ) : (
         <>
           <div className="movie-grid">
-            {watchlist.map(movie => (
+            {watchlist.map((movie) => (
               <MovieCard
                 key={movie.id}
                 movie={movie}
