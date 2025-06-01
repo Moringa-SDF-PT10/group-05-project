@@ -5,6 +5,10 @@ Browse popular, trending, and classic movies, build your favorites list, create 
 
 ---
 
+## [Live Preview](https://delightful-horse-5c7068.netlify.app/)
+
+[Experience CinemaHub 🚀](https://delightful-horse-5c7068.netlify.app/)
+
 ## Table of Contents
 
 - [🎬 CinemaHub – Movie Discovery \& Trivia App](#-cinemahub--movie-discovery--trivia-app)
@@ -48,6 +52,26 @@ CinemaHub is a React-based web app that connects to The Movie Database (TMDb) AP
 
 ---
 
+## Screenshots
+
+<b>[Landing Page](https://delightful-horse-5c7068.netlify.app/trivia)</b>
+![alt text](./src/assets/image.png)
+
+<b>Trending Section. Get to know what movies are trending</b>
+![alt text](./src/assets/image-1.png)
+
+<b>[Visit our Trivia section and test your movie knowledge](https://delightful-horse-5c7068.netlify.app/trivia) </b>
+![alt text](./src/assets/image-2.png)
+
+<b>Mark your favourite movies</b>
+![alt text](./src/assets/image-3.png)
+
+<b>Don't forget to signup to have great experience</b>
+![alt text](./src/assets/image-4.png)
+
+<b>And if you don't find your movie you can always search it</b>
+![alt text](./src/assets/image-5.png)
+
 ## Getting Started
 
 ### Prerequisites
@@ -59,29 +83,29 @@ CinemaHub is a React-based web app that connects to The Movie Database (TMDb) AP
 
 1. Clone the repo:
 
-    ```bash
+   ```bash
    git clone https://github.com/Moringa-SDF-PT10/group-05-project.git
 
-    ```
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    cd group-05-project
-    npm install
-    ```
+   ```bash
+   cd group-05-project
+   npm install
+   ```
 
 3. Create a `.env` file in the root and add your TMDb API key:
 
-    ```env
-    VITE_TMDB_API_KEY=your_api_key_here
-    ```
+   ```env
+   VITE_TMDB_API_KEY=your_api_key_here
+   ```
 
 4. Run the app:
 
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
 ---
 
@@ -91,36 +115,33 @@ group-05-project/
 
 │
 
-├── public/ 
+├── public/
 
 ├── src/
 
-│   ├── api/   
+│ ├── api/
 
-│   │   └── Api.js
+│ │ └── Api.js
 
-│   ├── components/    
-    
+│ ├── components/
 
-│   ├── context/            
+│ ├── context/
 
-│   ├── pages/             
+│ ├── pages/
 
-│   ├── styles/             
+│ ├── styles/
 
-│   ├── App.jsx             
+│ ├── App.jsx
 
-│   └── main.jsx           
+│ └── main.jsx
 
-├── .env                    
+├── .env
 
 ├── package.json
 
 ├── README.md
 
-└── LICENSE 
-
-
+└── LICENSE
 
 ---
 
@@ -160,13 +181,13 @@ After running the app:
 
 ## Technologies Used
 
-- React 18  
-- React Router DOM  
-- React Bootstrap  
-- TMDb API  
-- Vite (Build tool)  
-- JavaScript (ES6+)  
-- CSS  
+- React 18
+- React Router DOM
+- React Bootstrap
+- TMDb API
+- Vite (Build tool)
+- JavaScript (ES6+)
+- CSS
 
 ---
 
@@ -184,5 +205,4 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ## Contact
 
-This project is a collaborative effort by ***Moringa-SDF-PT10 Group 05***
-
+This project is a collaborative effort by **_Moringa-SDF-PT10 Group 05_**
