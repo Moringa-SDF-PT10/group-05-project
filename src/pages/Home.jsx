@@ -7,6 +7,7 @@ import {
   getNowPlayingMovies,
 } from "../api/api";
 import { useMovieContext } from "../context/MovieContexts";
+import MovieTrailer from "../components/MovieTrailer";
 
 function Home() {
   const [featuredMovies, setFeaturedMovies] = useState([]);
@@ -15,6 +16,8 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { addToWatchlist, isInWatchlist } = useMovieContext();
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [currentMovieTitle, setCurrentMovieTitle] = useState("");
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -44,7 +47,10 @@ function Home() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-
+  const playCurrentTrailer = (title) => {
+    setCurrentMovieTitle(title);
+    setShowTrailer(true);
+  };
   return (
     <div className="home-page">
       {/* Hero Carousel */}
@@ -63,7 +69,21 @@ function Home() {
                   {movie.release_date?.split("-")[0]} • {movie.vote_average} ⭐
                 </p>
                 <div className="hero-buttons">
-                  <button className="btn btn-danger me-2">Play Now</button>
+                  {/* <Button variant="danger" onClick={() => setShowTrailer(true)}>
+                    Watch Trailer
+                  </Button> */}
+                  <button
+                    className="btn btn-danger me-2"
+                    onClick={() => playCurrentTrailer(movie.title)}
+                  >
+                    Play Now
+                  </button>
+                  <MovieTrailer
+                    show={showTrailer}
+                    handleClose={() => setShowTrailer(false)}
+                    movieTitle={currentMovieTitle}
+                  />
+
                   <button
                     className={`btn ${
                       isInWatchlist(movie.id)
