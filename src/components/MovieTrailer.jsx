@@ -6,6 +6,8 @@ import movieTrailer from "movie-trailer";
 function MovieTrailer({ show, handleClose, movieTitle }) {
   const [trailerUrl, setTrailerUrl] = useState("");
 
+  console.log(movieTitle);
+
   useEffect(() => {
     if (movieTitle) {
       movieTrailer(movieTitle)
