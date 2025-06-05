@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "../styles/MovieCard.css";
 import { useMovieContext } from "../context/MovieContexts";
 import { Button } from "react-bootstrap";
+import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer";
+import MovieTrailer from "./MovieTrailer";
+
 function MovieCard({ movie, showRemove = false, onRemove }) {
   const {
     isFavorite,
@@ -14,6 +18,8 @@ function MovieCard({ movie, showRemove = false, onRemove }) {
 
   const [note, setNote] = useState(movie.note || "");
   const [isEditingNote, setIsEditingNote] = useState(false);
+
+  const [showTrailer, setShowTrailer] = useState(false);
 
   function handleFavoriteClick(e) {
     e.preventDefault();
@@ -60,9 +66,14 @@ function MovieCard({ movie, showRemove = false, onRemove }) {
             ? movie.overview.slice(0, 100) + "..."
             : "No overview available"}
         </p>
-        <a href="#" className="btn btn-primary">
+        <Button variant="danger" onClick={() => setShowTrailer(true)}>
           Watch Trailer
-        </a>
+        </Button>
+        <MovieTrailer
+          show={showTrailer}
+          handleClose={() => setShowTrailer(false)}
+          movieTitle={movie.title}
+        />
 
         {/* Show saved note if exists and not editing */}
         {movie.note && !isEditingNote && (
